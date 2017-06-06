@@ -1,0 +1,20 @@
+<h1 class="text-center">My Favorites</h1>
+<h2 class="text-center">Some of the songs I like</h2>
+
+  <% @faves.each do |f| %>
+    <div class="alert alert-info">
+      <div class="row">
+        <div class="col-xs-2">
+          <img src="<%= f.artwork_url %>">
+        </div>
+        <div class="col-xs-10">
+          <h4><strong><%= f.title %></strong> by <%= f.artist %></h4>
+          <a target="__blank" class="btn btn-info" href="<%= f.preview_url %>">
+            Listen to a Preview?
+          </a>
+          <%= link_to 'Delete Favorite?', favorite_path(f), method: :delete, class: 'btn btn-danger' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+

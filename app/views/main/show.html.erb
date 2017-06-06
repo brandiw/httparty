@@ -1,0 +1,29 @@
+<h1 class="text-center">Read all about it</h1>
+
+<img src="<%= @single_track[0]['artworkUrl100'] %>">
+
+<div class="row">
+  <div class="col-xs-6">
+    <p><strong>TRACK ID:</strong> <%= @single_track[0]['trackId'] %></p>
+    <p><strong>TRACK NAME:</strong> <%= @single_track[0]['trackName'] %></p>
+    <p><strong>TRACK NUM:</strong> <%= @single_track[0]['trackNumber'] %> of <%= @single_track[0]['trackCount'] %></p>
+    <p><strong>TRACK TIME:</strong> <%= (@single_track[0]['trackTimeMillis'] / 1000).floor %> seconds</p>
+  </div>
+  <div class="col-xs-6">
+    <p><strong>ARTIST:</strong> <%= @single_track[0]['artistName'] %></p>
+    <p><strong>GENRE:</strong> <%= @single_track[0]['primaryGenreName'] %></p>
+    <p><strong>ALBUM:</strong> <%= @single_track[0]['collectionName'] %></p>
+    <p><strong>ALBUM PRICE:</strong> $<%= @single_track[0]['collectionPrice'] %> <%= @single_track[0]['currency'] %></p>
+  </div>
+</div>
+
+<%= form_for @fave do |f| %>
+  <%= f.hidden_field :title, :value => @single_track[0]['trackName'] %>
+  <%= f.hidden_field :artist, :value => @single_track[0]['artistName'] %>
+  <%= f.hidden_field :artwork_url, :value => @single_track[0]['artworkUrl100'] %>
+  <%= f.hidden_field :preview_url, :value => @single_track[0]['previewUrl'] %>
+  <%= f.hidden_field :track_length, :value => (@single_track[0]['trackTimeMillis'] / 1000).floor %>
+  <%= f.submit :class => 'btn btn-warning' %>
+<% end %>
+
+<br><br>
